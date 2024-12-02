@@ -30,11 +30,9 @@ public:
 
   	LaKatRTCNRF( void );
     int begin( uint32_t prescaler ); 
-    uint32_t getCounter( void );
-    uint32_t getPrescaler( void );
+    uint32_t getCounter( int rtcNum );
+    uint32_t getPrescaler( int rtcNum );
     int32_t toSeconds( int32_t rtcValue );
-    void start( void );
-    void stop( void );
     void enableInterrupts( void );
     void disableInterrupts( void );
 
