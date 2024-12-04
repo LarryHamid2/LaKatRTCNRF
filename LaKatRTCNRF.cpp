@@ -25,7 +25,7 @@
     //digitalWrite( A3, HIGH );
 //}
 
-void RTC2_IRQHandler(void)
+extern "C" void RTC2_IRQHandler(void)
 {
     // Clear all events
     nrf_rtc_event_clear( SMARTBOX_RTC, NRF_RTC_EVENT_COMPARE_0 );
@@ -79,7 +79,7 @@ int LaKatRTCNRF::begin( uint32_t prescaler )
     enableInterrupts();
 
     nrf_rtc_task_trigger( SMARTBOX_RTC, NRF_RTC_TASK_CLEAR );
-    //nrf_rtc_task_trigger( SMARTBOX_RTC, NRF_RTC_TASK_START );  // This causes a hang
+    nrf_rtc_task_trigger( SMARTBOX_RTC, NRF_RTC_TASK_START );  // This causes a hang
 
     NVIC_ClearPendingIRQ( SMARTBOX_RTC_IRQn );
     NVIC_SetPriority( SMARTBOX_RTC_IRQn, SMARTBOX_RTC_IRQ_PRI );
