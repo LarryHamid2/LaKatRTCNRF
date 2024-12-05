@@ -19,12 +19,8 @@
 #define debug_rtc_2ln(x,y)
 #endif
 
-/* IRQ prototype */
-//void RTC1_IRQHandler( void )
-//{
-    //digitalWrite( A3, HIGH );
-//}
 
+// NOTE: It is EXTREMELY important to use extern "C", otherwise things hang. 
 extern "C" void RTC2_IRQHandler(void)
 {
     // Clear all events
@@ -107,7 +103,8 @@ uint32_t LaKatRTCNRF::getPrescaler( int rtcNum )
 //
 int32_t LaKatRTCNRF::toSeconds( int32_t rtcValue )
 {
-    return rtcValue >> 10;
+    // Assuming an 8Hz counter
+    return rtcValue >> 3;
 }
 
 
